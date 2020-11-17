@@ -12,8 +12,13 @@ setTimeout(function () {
   }, 10);
 }, 10);
 
-let promise = new Promise(function (resolve, reject) {
-  var print = "";
-  resolve(value);
-  reject(reason);
-});
+// 改造
+let promise = new Promise((resolve) => {
+  resolve("hello");
+})
+  .then((value) => {
+    return value + "lagou";
+  })
+  .then((value) => {
+    console.log(value + "I ♥ U");
+  });

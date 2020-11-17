@@ -66,7 +66,15 @@ console.log(averageDollarValue(cars));
 //sanitizeNames(["Hello World"]) => ["hello_world"]
 
 let _underscore = fp.replace(/\W+/g, "_");
+// 第一种
 let sanitizeNames = fp.flowRight(
+  fp.map(_underscore),
+  fp.map(fp.toLower),
+  fp.map("name")
+);
+// 改造：合并map方法
+let sanitizeNames2 = fp.flowRight(
   fp.map(fp.flowRight(_underscore, fp.toLower, fp.get("name")))
 );
 console.log(sanitizeNames(cars));
+console.log(sanitizeNames2(cars));
